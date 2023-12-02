@@ -30,7 +30,7 @@ class App {
     projectsContainer.innerHTML = '';
     this.projects.forEach((project) => {
       const projectContainer = document.createElement('div');
-      projectContainer.classList = 'project-container';
+      projectContainer.classList = `project-container`;
       projectContainer.innerHTML = `
     <button class="delete-project-btn">x</button>
     <h1 class="project-name">${project.name}</h1>

@@ -10,6 +10,8 @@ const addTodoBtn = document.getElementById('add-todo-btn');
 const todoForm = document.querySelector('.todo-form');
 const todoInputValue = document.getElementById('todo-name');
 const todosContainer = document.querySelector('.todos-container');
+const projects = document.querySelector('.projects');
+const todos = document.querySelector('.todos');
 
 const app = new App();
 app.createProject('Gym');
@@ -18,6 +20,7 @@ app.createProject('Cooking');
 app.projects[0].createTodo('Bench', 'High');
 app.projects[0].createTodo('Back', 'High');
 app.projects[0].createTodo('Legs', 'High');
+app.projects[1].createTodo('Legs', 'High');
 
 addProjectBtn.addEventListener('click', handleProjectModal);
 
@@ -35,6 +38,20 @@ projectsContainer.addEventListener('click', (e) => {
     app.deleteProject(targetProjectName);
     app.displayProject();
     app.displayHowManyProjects();
+  }
+});
+
+projectsContainer.addEventListener('click', (e) => {
+  if (e.target.className === 'project-container') {
+    const targetName = e.target.lastElementChild.textContent;
+    const targetId = app.projects.findIndex(
+      (project) => project.name === targetName,
+    );
+    projects.classList = 'projects close';
+    setTimeout(() => {
+      todos.classList = 'todos open';
+    }, 500);
+    app.projects[targetId].displayTodo();
   }
 });
 

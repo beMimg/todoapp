@@ -32,12 +32,11 @@ body {
 
 .projects {
   /* for now */
-  /* display: none; */
   height: 100%;
   grid-template-rows: 10% auto;
-  /* opacity: 1;
-  display: grid; */
-  display: none;
+  opacity: 1;
+  display: grid;
+  /* display: none; */
   overflow: auto;
   padding: 5px;
 }
@@ -159,10 +158,10 @@ header {
 .todos {
   height: 100%;
   grid-template-rows: 10% auto;
-  /* opacity: 0;
-  display: none; */
+  opacity: 0;
+  display: none;
   opacity: 1;
-  display: grid;
+  /* display: grid; */
   overflow: auto;
   padding: 5px;
 }
