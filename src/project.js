@@ -35,4 +35,6 @@ class Project {
   }
 }
 
+function displayProject() {}
+
 export default Project;

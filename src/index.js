@@ -1,5 +1,8 @@
+import './styles/style.css';
 import App from './app';
+import handleBtns from './btns';
 
+handleBtns();
 const app = new App();
 app.createProject('Gym');
 app.createProject('Cleaning');
