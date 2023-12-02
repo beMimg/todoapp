@@ -1,9 +1,21 @@
 import './styles/style.css';
 import App from './app';
-import handleBtns from './btns';
+import handleProjectModal from './utils';
 
-handleBtns();
+const addProjectBtn = document.getElementById('add-project-btn');
+const projectForm = document.querySelector('.project-form');
+const projectInputValue = document.getElementById('project-name');
 const app = new App();
+
+addProjectBtn.addEventListener('click', handleProjectModal);
+
+projectForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const projectName = projectInputValue.value;
+  app.createProject(projectName);
+  handleProjectModal();
+});
+
 app.createProject('Gym');
 app.createProject('Cleaning');
 app.createProject('Cooking');

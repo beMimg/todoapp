@@ -11,6 +11,7 @@ body {
   justify-items: center;
   color: white;
 }
+
 .background {
   z-index: 0;
   width: 100%;
@@ -28,17 +29,20 @@ body {
   border-radius: 20px;
   background: linear-gradient(rgba(52, 2, 2, 0.6), rgba(0, 0, 0, 0.7));
 }
+
 .projects {
   height: 100%;
   grid-template-rows: 10% auto;
   display: grid;
 }
+
 header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
+
 #add-project-btn {
   display: flex;
   align-items: center;
@@ -52,6 +56,7 @@ header {
   font-size: 2rem;
   cursor: pointer;
 }
+
 .project-form-modal {
   position: absolute;
   top: 0;
@@ -65,16 +70,22 @@ header {
   justify-content: center;
   z-index: 20000;
 }
+
 .project-form-modal.open {
   display: flex;
   animation: displayNoneToFlex 1s ease;
 }
+.project-form-modal.close {
+  animation: displayFlexToNone 1s ease;
+}
+
 .project-form {
   background-color: white;
   color: black;
   padding: 20px;
   border-radius: 10px;
 }
+
 .projects-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 400px));
@@ -82,6 +93,7 @@ header {
   gap: 20px;
   padding: 20px;
 }
+
 .project-container {
   background-color: aqua;
   max-height: 300px;
@@ -91,11 +103,13 @@ header {
   grid-template-rows: repeat(3, 1fr);
   cursor: pointer;
 }
+
 .project-name {
   display: grid;
   align-self: center;
   justify-self: center;
 }
+
 .delete-project-btn {
   width: 30px;
   height: 30px;
@@ -119,5 +133,16 @@ header {
   100% {
     opacity: 1;
     display: flex;
+  }
+}
+
+@keyframes displayFlexToNone {
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+  100% {
+    opacity: 0;
+    display: none;
   }
 }
