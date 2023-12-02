@@ -5,13 +5,19 @@ class Project {
     this.name = name;
     this.data = new Date();
     this.todos = [];
-    this.howManyTodos = 0;
+    this.howManyTodosActive = 0;
   }
 
   createTodo(name, priority) {
     const newTodo = new Todo(name, priority);
     this.todos.push(newTodo);
-    this.howManyTodos += 1;
+    this.howManyTodosActive += 1;
+  }
+
+  deleteTodo(name) {
+    const index = this.todos.findIndex((todo) => todo.name === name);
+    this.todos.splice(index, 1);
+    this.howManyTodosActive -= 1;
   }
 }
 
