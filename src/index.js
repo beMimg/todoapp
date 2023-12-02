@@ -8,6 +8,9 @@ const projectInputValue = document.getElementById('project-name');
 const projectsContainer = document.querySelector('.projects-container');
 
 const app = new App();
+app.createProject('Gym');
+app.createProject('Cleaning');
+app.createProject('Cooking');
 
 addProjectBtn.addEventListener('click', handleProjectModal);
 
@@ -15,6 +18,7 @@ projectForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const projectName = projectInputValue.value;
   app.createProject(projectName);
+  app.displayHowManyProjects();
   handleProjectModal();
 });
 
@@ -23,18 +27,8 @@ projectsContainer.addEventListener('click', (e) => {
     const targetProjectName = e.target.nextElementSibling.textContent;
     app.deleteProject(targetProjectName);
     app.displayProject();
+    app.displayHowManyProjects();
   }
 });
 
-app.createProject('Gym');
-app.createProject('Cleaning');
-app.createProject('Cooking');
-
-app.projects[0].createTodo('Bench', 'High');
-app.projects[0].createTodo('Este', 'High');
-app.projects[0].createTodo('Back', 'High');
-app.projects[0].createTodo('Bench', 'High');
-app.projects[1].createTodo('Bench', 'High');
-
-app.projects[0].editTodo('Este', 'This');
 console.log(app);

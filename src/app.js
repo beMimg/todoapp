@@ -1,6 +1,7 @@
 import Project from './project';
 
 const projectsContainer = document.querySelector('.projects-container');
+const howManyProjects = document.querySelector('.how-many-projects');
 
 class App {
   constructor() {
@@ -36,6 +37,11 @@ class App {
   `;
       projectsContainer.appendChild(projectContainer);
     });
+  }
+
+  displayHowManyProjects() {
+    console.log(this.howManyProjectsActive);
+    howManyProjects.textContent = this.howManyProjectsActive;
   }
 }
 
