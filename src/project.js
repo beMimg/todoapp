@@ -19,6 +19,11 @@ class Project {
     this.todos.splice(index, 1);
     this.howManyTodosActive -= 1;
   }
+
+  deleteAllTodos() {
+    this.todos = [];
+    this.howManyTodosActive = 0;
+  }
 }
 
 export default Project;

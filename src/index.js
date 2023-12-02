@@ -9,5 +9,7 @@ thisProject.createTodo('Bencdddd', 'Very bdddig');
 thisProject.createTodo('2', 'Very bdddig');
 thisProject.deleteTodo('2');
 thisProject.deleteTodo('3');
+thisProject.deleteAllTodos();
+thisProject.createTodo('2', 'Very bdddig');
 
 console.log(thisProject);
