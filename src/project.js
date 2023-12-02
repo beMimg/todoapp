@@ -1,5 +1,7 @@
 import Todo from './todo';
 
+const todosContainer = document.querySelector('.todos-container');
+
 class Project {
   constructor(name) {
     this.name = name;
@@ -32,6 +34,19 @@ class Project {
   editTodo(prevName, nextName) {
     const index = this.todos.findIndex((todo) => todo.name === prevName);
     this.todos[index].name = nextName;
+  }
+
+  displayTodo() {
+    todosContainer.innerHTML = '';
+    this.todos.forEach((todo) => {
+      const todoContainer = document.createElement('div');
+      todoContainer.classList = 'todo-container';
+      todoContainer.innerHTML = `
+      <button class="delete-todo-btn">x</button>
+      <h1 class="project-name">${todo.name}</h1>
+    `;
+      todosContainer.appendChild(todoContainer);
+    });
   }
 }
 

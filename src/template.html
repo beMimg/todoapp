@@ -14,14 +14,27 @@
         <button type="submit">Create</button>
       </form>
     </div>
+
+    <div class="todo-form-modal">
+      <form class="todo-form">
+        <label for="todo-name">Project Name:</label>
+        <input type="text" name="todo-name" id="todo-name" />
+        <button type="submit">Create</button>
+      </form>
+    </div>
     <!-- Display None Default END -->
 
     <div class="background"></div>
     <main class="app">
+      <!-- Projects -->
       <div class="projects">
         <header>
           <h1 class="header-title">Your projects</h1>
-          <button id="add-project-btn" aria-label="add project button">
+          <button
+            class="add-btn"
+            id="add-project-btn"
+            aria-label="add project button"
+          >
             +
           </button>
           <div class="how-many-projects" aria-label="number of active projects">
@@ -32,6 +45,27 @@
           class="projects-container"
           aria-label="projects container"
         ></section>
+      </div>
+      <!-- Projects end -->
+      <!-- Todos -->
+      <div class="todos">
+        <header>
+          <div class="top-left-header">
+            <button>GoB</button>
+            <h1 class="header-title">This project todos</h1>
+          </div>
+          <button
+            class="add-btn"
+            id="add-todo-btn"
+            aria-label="add todo button"
+          >
+            +
+          </button>
+          <div class="how-many-todos" aria-label="number of active todos">
+            3
+          </div>
+        </header>
+        <section class="todos-container" aria-label="todos container"></section>
       </div>
     </main>
   </body>

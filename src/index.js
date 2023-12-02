@@ -1,16 +1,23 @@
 import './styles/style.css';
 import App from './app';
-import handleProjectModal from './utils';
+import { handleProjectModal, handleTodoModal } from './utils';
 
 const addProjectBtn = document.getElementById('add-project-btn');
 const projectForm = document.querySelector('.project-form');
 const projectInputValue = document.getElementById('project-name');
 const projectsContainer = document.querySelector('.projects-container');
+const addTodoBtn = document.getElementById('add-todo-btn');
+const todoForm = document.querySelector('.todo-form');
+const todoInputValue = document.getElementById('todo-name');
+const todosContainer = document.querySelector('.todos-container');
 
 const app = new App();
 app.createProject('Gym');
 app.createProject('Cleaning');
 app.createProject('Cooking');
+app.projects[0].createTodo('Bench', 'High');
+app.projects[0].createTodo('Back', 'High');
+app.projects[0].createTodo('Legs', 'High');
 
 addProjectBtn.addEventListener('click', handleProjectModal);
 
@@ -28,6 +35,24 @@ projectsContainer.addEventListener('click', (e) => {
     app.deleteProject(targetProjectName);
     app.displayProject();
     app.displayHowManyProjects();
+  }
+});
+
+addTodoBtn.addEventListener('click', handleTodoModal);
+
+todoForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const todoName = todoInputValue.value;
+  app.projects[0].createTodo(todoName);
+  app.projects[0].displayTodo();
+  handleTodoModal();
+});
+
+todosContainer.addEventListener('click', (e) => {
+  if (e.target.className === 'delete-todo-btn') {
+    const targetTodoName = e.target.nextElementSibling.textContent;
+    app.projects[0].deleteTodo(targetTodoName);
+    app.projects[0].displayTodo();
   }
 });
 

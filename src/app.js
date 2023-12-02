@@ -40,7 +40,6 @@ class App {
   }
 
   displayHowManyProjects() {
-    console.log(this.howManyProjectsActive);
     howManyProjects.textContent = this.howManyProjectsActive;
   }
 }

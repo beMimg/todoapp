@@ -9,4 +9,15 @@ function handleProjectModal() {
   }
 }
 
-export default handleProjectModal;
+function handleTodoModal() {
+  const todoFromModal = document.querySelector('.todo-form-modal');
+  if (!todoFromModal.classList.contains('open')) {
+    todoFromModal.classList.remove('close');
+    todoFromModal.classList.add('open');
+  } else if (todoFromModal.classList.contains('open')) {
+    todoFromModal.classList.remove('open');
+    todoFromModal.classList.add('close');
+  }
+}
+
+export { handleProjectModal, handleTodoModal };
