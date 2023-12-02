@@ -34,6 +34,8 @@ body {
   height: 100%;
   grid-template-rows: 10% auto;
   display: grid;
+  overflow: auto;
+  padding: 5px;
 }
 
 header {
@@ -88,15 +90,13 @@ header {
 
 .projects-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 400px));
-  justify-content: center;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 20px;
   padding: 20px;
 }
 
 .project-container {
   background-color: aqua;
-  max-height: 300px;
   border-radius: 20px;
   background: linear-gradient(rgba(18, 124, 159, 1), rgba(0, 0, 0, 0.8));
   display: grid;
@@ -105,9 +105,12 @@ header {
 }
 
 .project-name {
+  overflow: hidden;
   display: grid;
   align-self: center;
   justify-self: center;
+  font-size: 100%;
+  overflow: hidden;
 }
 
 .delete-project-btn {
