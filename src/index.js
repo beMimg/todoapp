@@ -1,9 +1,7 @@
-import generateJoke from './generateJoke';
-import './styles/main.scss';
-import githubIconSvg from './assets/github.svg';
+import Project from './project';
 
-const githubSvg = document.getElementById('github-svg');
-githubSvg.src = githubIconSvg;
+const thisProject = new Project('Gym');
+thisProject.createTodo('Bench press', 'Very big');
+thisProject.createTodo('Bencdddd', 'Very bdddig');
 
-console.log(generateJoke());
-console.log('hddi');
+console.log(thisProject);
