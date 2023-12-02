@@ -9,6 +9,10 @@ class Project {
   }
 
   createTodo(name, priority) {
+    if (this.todos.some((todo) => todo.name === name)) {
+      console.error('This todo already exists.');
+      return;
+    }
     const newTodo = new Todo(name, priority);
     this.todos.push(newTodo);
     this.howManyTodosActive += 1;
@@ -23,6 +27,11 @@ class Project {
   deleteAllTodos() {
     this.todos = [];
     this.howManyTodosActive = 0;
+  }
+
+  editTodo(prevName, nextName) {
+    const index = this.todos.findIndex((todo) => todo.name === prevName);
+    this.todos[index].name = nextName;
   }
 }
 

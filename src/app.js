@@ -7,6 +7,10 @@ class App {
   }
 
   createProject(name) {
+    if (this.projects.some((project) => project.name === name)) {
+      console.error('This project already exists.');
+      return;
+    }
     const newProject = new Project(name);
     this.projects.push(newProject);
     this.howManyProjectsActive += 1;
