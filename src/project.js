@@ -3,7 +3,7 @@ import Todo from './todo';
 class Project {
   constructor(name) {
     this.name = name;
-    this.data = Date.now();
+    this.id = Date.now();
     this.todos = [];
     this.howManyTodosActive = 0;
   }
@@ -24,8 +24,6 @@ class Project {
     this.todos = [];
     this.howManyTodosActive = 0;
   }
-
-  deleteThisProject() {}
 }
 
 export default Project;
