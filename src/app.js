@@ -42,6 +42,13 @@ class App {
   displayHowManyProjects() {
     howManyProjects.textContent = this.howManyProjectsActive;
   }
+
+  findTheIndex(name) {
+    const targetId = this.projects.findIndex(
+      (project) => project.name === name,
+    );
+    return targetId;
+  }
 }
 
 export default App;

@@ -20,4 +20,15 @@ function handleTodoModal() {
   }
 }
 
-export { handleProjectModal, handleTodoModal };
+function getIndex(container) {
+  const containerChildren = container.children;
+  let index = 0;
+  for (let i = 0; i < containerChildren.length; i++) {
+    if (containerChildren[i].classList.contains('selected')) {
+      index = i;
+    }
+  }
+  return index;
+}
+
+export { handleProjectModal, handleTodoModal, getIndex };

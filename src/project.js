@@ -48,6 +48,11 @@ class Project {
       todosContainer.appendChild(todoContainer);
     });
   }
+
+  findTheIndex(name) {
+    const index = this.todos.findIndex((todo) => todo.name === name);
+    return index;
+  }
 }
 
 export default Project;
