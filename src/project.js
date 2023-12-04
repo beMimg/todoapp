@@ -1,4 +1,3 @@
-import Todo from './todo';
 import { projects, LOCAL_STORAGE_PROJECTS_KEY } from '.';
 
 const projectsContainer = document.querySelector('.projects-container');

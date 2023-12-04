@@ -15,8 +15,8 @@ import {
 import {
   createTodo,
   deleteTodo,
-  displayTodo,
   displayHowManyTodos,
+  displayTodo,
 } from './todo';
 
 const addProjectBtn = document.getElementById('add-project-btn');
@@ -30,6 +30,7 @@ const todosContainer = document.querySelector('.todos-container');
 const projectsHTML = document.querySelector('.projects');
 const todos = document.querySelector('.todos');
 const goBack = document.querySelector('.go-back');
+const headerTitle = document.getElementById('this-projects-title');
 
 addProjectBtn.addEventListener('click', handleProjectModal);
 
@@ -64,7 +65,9 @@ projectsContainer.addEventListener('click', (e) => {
     setTimeout(() => {
       todos.classList = 'todos open';
     }, 500);
+    headerTitle.textContent = projects[targetId].name;
     displayTodo(projects[targetId].todos);
+    displayHowManyTodos(projects[targetId].todos.length);
   }
 });
 

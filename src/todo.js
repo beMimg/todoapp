@@ -17,11 +17,13 @@ const createTodo = (name, arr) => {
   }
   const newTodo = new Todo(name);
   arr.push(newTodo);
+  displayHowManyTodos(arr.length);
 };
 
 const deleteTodo = (name, arr) => {
   const index = arr.findIndex((todo) => todo.name === name);
   arr.splice(index, 1);
+  displayHowManyTodos(arr.length);
 };
 
 const editTodo = (prevName, nextName, arr) => {
