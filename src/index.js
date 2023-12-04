@@ -1,6 +1,23 @@
 import './styles/style.css';
-import App from './app';
-import { handleProjectModal, handleTodoModal, getIndex } from './utils';
+import {
+  handleProjectModal,
+  handleTodoModal,
+  getSelectedContainer,
+} from './utils';
+import {
+  createProject,
+  deleteProject,
+  displayProjects,
+  displayHowManyProjects,
+  findTheIndex,
+  // saveLOCAL,
+} from './project';
+import {
+  createTodo,
+  deleteTodo,
+  displayTodo,
+  displayHowManyTodos,
+} from './todo';
 
 const addProjectBtn = document.getElementById('add-project-btn');
 const projectForm = document.querySelector('.project-form');
@@ -10,29 +27,33 @@ const addTodoBtn = document.getElementById('add-todo-btn');
 const todoForm = document.querySelector('.todo-form');
 const todoInputValue = document.getElementById('todo-name');
 const todosContainer = document.querySelector('.todos-container');
-const projects = document.querySelector('.projects');
+const projectsHTML = document.querySelector('.projects');
 const todos = document.querySelector('.todos');
 const goBack = document.querySelector('.go-back');
 
-const app = new App();
-app.saveAndDisplayProjects();
-
 addProjectBtn.addEventListener('click', handleProjectModal);
+
+let projects = [];
+let howManyProjects = 0;
 
 projectForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const projectName = projectInputValue.value;
-  app.createProject(projectName);
-  app.displayHowManyProjects();
+  createProject(projectName, projects);
   handleProjectModal();
+  displayProjects(projects);
+  howManyProjects += 1;
+  displayHowManyProjects(howManyProjects);
+  console.log(projects[0].todos);
 });
 
 projectsContainer.addEventListener('click', (e) => {
   if (e.target.className === 'delete-project-btn') {
     const targetProjectName = e.target.nextElementSibling.textContent;
-    app.deleteProject(targetProjectName);
-    app.displayProject();
-    app.displayHowManyProjects();
+    deleteProject(targetProjectName, projects);
+    displayProjects(projects);
+    howManyProjects -= 1;
+    displayHowManyProjects(howManyProjects);
   }
 });
 
@@ -40,13 +61,13 @@ projectsContainer.addEventListener('click', (e) => {
   if (e.target.className === 'project-container') {
     e.target.classList.add('selected');
     const targetName = e.target.lastElementChild.textContent;
-    const targetId = app.findTheIndex(targetName);
-    projects.classList = 'projects close';
+    const targetId = findTheIndex(targetName, projects);
+    projectsHTML.classList = 'projects close';
     setTimeout(() => {
       todos.classList = 'todos open';
     }, 500);
-    app.projects[targetId].displayTodo();
-    app.projects[targetId].displayHowManyTodos();
+    displayTodo(projects[targetId].todos);
+    displayHowManyTodos(projects[targetId].todos.length);
   }
 });
 
@@ -55,31 +76,29 @@ addTodoBtn.addEventListener('click', handleTodoModal);
 todoForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const todoName = todoInputValue.value;
-  let index = getIndex(projectsContainer);
-  app.projects[index].createTodo(todoName);
-  app.projects[index].displayTodo();
-  app.projects[index].displayHowManyTodos();
+  let index = getSelectedContainer(projectsContainer);
+  createTodo(todoName, projects[index].todos);
+  displayTodo(projects[index].todos);
+  displayHowManyTodos(projects[index].todos.length);
   handleTodoModal();
 });
 
 todosContainer.addEventListener('click', (e) => {
   if (e.target.className === 'delete-todo-btn') {
-    let index = getIndex(projectsContainer);
+    let index = getSelectedContainer(projectsContainer);
     const targetTodoName = e.target.nextElementSibling.textContent;
-    app.projects[index].deleteTodo(targetTodoName);
-    app.projects[index].displayTodo();
-    app.projects[index].displayHowManyTodos();
+    deleteTodo(targetTodoName, projects[index].todos);
+    displayTodo(projects[index].todos);
   }
 });
 
-// unselects all
+// // unselects all
 goBack.addEventListener('click', () => {
-  for (let i = 0; i < app.projects.length; i++) {
+  for (let i = 0; i < projects.length; i++) {
     projectsContainer.children[i].classList = 'project-container';
   }
   todos.classList = 'todos close';
   setTimeout(() => {
-    projects.classList = 'projects open';
+    projectsHTML.classList = 'projects open';
   }, 500);
 });
-console.log(app);

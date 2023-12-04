@@ -1,7 +1,7 @@
 import Todo from './todo';
 
-const todosContainer = document.querySelector('.todos-container');
-const howManyTodos = document.querySelector('.how-many-todos');
+const projectsContainer = document.querySelector('.projects-container');
+const howManyProjects = document.querySelector('.how-many-projects');
 
 class Project {
   constructor(name) {
@@ -10,54 +10,56 @@ class Project {
     this.todos = [];
     this.howManyTodosActive = 0;
   }
-
-  createTodo(name, priority) {
-    if (this.todos.some((todo) => todo.name === name)) {
-      console.error('This todo already exists.');
-      return;
-    }
-    const newTodo = new Todo(name, priority);
-    this.todos.push(newTodo);
-    this.howManyTodosActive += 1;
-  }
-
-  deleteTodo(name) {
-    const index = this.todos.findIndex((todo) => todo.name === name);
-    this.todos.splice(index, 1);
-    this.howManyTodosActive -= 1;
-  }
-
-  deleteAllTodos() {
-    this.todos = [];
-    this.howManyTodosActive = 0;
-  }
-
-  editTodo(prevName, nextName) {
-    const index = this.findTheIndex(prevName);
-    this.todos[index].name = nextName;
-  }
-
-  displayTodo() {
-    todosContainer.innerHTML = '';
-    this.todos.forEach((todo) => {
-      const todoContainer = document.createElement('div');
-      todoContainer.classList = 'todo-container';
-      todoContainer.innerHTML = `
-      <button class="delete-todo-btn">x</button>
-      <h1 class="project-name">${todo.name}</h1>
-    `;
-      todosContainer.appendChild(todoContainer);
-    });
-  }
-
-  findTheIndex(name) {
-    const index = this.todos.findIndex((todo) => todo.name === name);
-    return index;
-  }
-
-  displayHowManyTodos() {
-    howManyTodos.textContent = this.howManyTodosActive;
-  }
 }
 
-export default Project;
+const createProject = (name, arr) => {
+  if (arr.some((project) => project.name === name)) {
+    return;
+  }
+  const newProject = new Project(name);
+  arr.push(newProject);
+  // saveLOCAL();
+};
+
+const deleteProject = (name, arr) => {
+  const index = findTheIndex(name, arr);
+  arr.splice(index, 1);
+  // saveLOCAL();
+};
+
+const displayProjects = (arr) => {
+  projectsContainer.innerHTML = '';
+  arr.forEach((project) => {
+    const projectContainer = document.createElement('div');
+    projectContainer.classList = `project-container`;
+    projectContainer.innerHTML = `
+    <button class="delete-project-btn">x</button>
+    <h1 class="project-name">${project.name}</h1>
+  `;
+    projectsContainer.appendChild(projectContainer);
+  });
+};
+
+const displayHowManyProjects = (arr) => {
+  howManyProjects.textContent = arr;
+};
+
+const findTheIndex = (name, arr) => {
+  const index = arr.findIndex((project) => project.name === name);
+  return index;
+};
+
+// const saveLOCAL = () => {
+//   let thisProjects_serialized = JSON.stringify(this.projects);
+//   localStorage.setItem('projectsLOCAL', thisProjects_serialized);
+// };
+
+export {
+  Project,
+  createProject,
+  deleteProject,
+  displayProjects,
+  displayHowManyProjects,
+  findTheIndex,
+  // saveLOCAL,
+};

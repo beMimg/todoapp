@@ -20,7 +20,7 @@ function handleTodoModal() {
   }
 }
 
-function getIndex(container) {
+function getSelectedContainer(container) {
   const containerChildren = container.children;
   let index = 0;
   for (let i = 0; i < containerChildren.length; i++) {
@@ -31,4 +31,4 @@ function getIndex(container) {
   return index;
 }
 
-export { handleProjectModal, handleTodoModal, getIndex };
+export { handleProjectModal, handleTodoModal, getSelectedContainer };
