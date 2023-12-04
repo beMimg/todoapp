@@ -1,4 +1,5 @@
 import Todo from './todo';
+import { projects, LOCAL_STORAGE_PROJECTS_KEY } from '.';
 
 const projectsContainer = document.querySelector('.projects-container');
 const howManyProjects = document.querySelector('.how-many-projects');
@@ -16,15 +17,15 @@ const createProject = (name, arr) => {
   if (arr.some((project) => project.name === name)) {
     return;
   }
+  displayHowManyProjects(arr.length + 1);
   const newProject = new Project(name);
   arr.push(newProject);
-  // saveLOCAL();
 };
 
 const deleteProject = (name, arr) => {
   const index = findTheIndex(name, arr);
   arr.splice(index, 1);
-  // saveLOCAL();
+  displayHowManyProjects(arr.length);
 };
 
 const displayProjects = (arr) => {
@@ -49,10 +50,14 @@ const findTheIndex = (name, arr) => {
   return index;
 };
 
-// const saveLOCAL = () => {
-//   let thisProjects_serialized = JSON.stringify(this.projects);
-//   localStorage.setItem('projectsLOCAL', thisProjects_serialized);
-// };
+function save() {
+  localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
+}
+
+function saveAndRender(arr) {
+  save();
+  displayProjects(arr);
+}
 
 export {
   Project,
@@ -61,4 +66,6 @@ export {
   displayProjects,
   displayHowManyProjects,
   findTheIndex,
+  save,
+  saveAndRender,
 };

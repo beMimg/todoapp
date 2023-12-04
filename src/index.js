@@ -7,9 +7,10 @@ import {
 import {
   createProject,
   deleteProject,
-  displayProjects,
+  save,
   displayHowManyProjects,
   findTheIndex,
+  saveAndRender,
 } from './project';
 import {
   createTodo,
@@ -35,16 +36,8 @@ addProjectBtn.addEventListener('click', handleProjectModal);
 let LOCAL_STORAGE_PROJECTS_KEY = 'projects_list';
 let projects =
   JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
-let howManyProjects = 0;
 saveAndRender(projects);
-function save() {
-  localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
-}
-
-function saveAndRender(arr) {
-  save();
-  displayProjects(arr);
-}
+displayHowManyProjects(projects.length);
 
 projectForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -52,17 +45,13 @@ projectForm.addEventListener('submit', (e) => {
   createProject(projectName, projects);
   handleProjectModal();
   saveAndRender(projects);
-  howManyProjects += 1;
-  displayHowManyProjects(howManyProjects);
 });
 
 projectsContainer.addEventListener('click', (e) => {
   if (e.target.className === 'delete-project-btn') {
     const targetProjectName = e.target.nextElementSibling.textContent;
     deleteProject(targetProjectName, projects);
-    displayProjects(projects);
-    howManyProjects -= 1;
-    displayHowManyProjects(howManyProjects);
+    saveAndRender(projects);
   }
 });
 
@@ -76,7 +65,6 @@ projectsContainer.addEventListener('click', (e) => {
       todos.classList = 'todos open';
     }, 500);
     displayTodo(projects[targetId].todos);
-    displayHowManyTodos(projects[targetId].todos.length);
   }
 });
 
@@ -87,8 +75,8 @@ todoForm.addEventListener('submit', (e) => {
   const todoName = todoInputValue.value;
   let index = getSelectedContainer(projectsContainer);
   createTodo(todoName, projects[index].todos);
+  save();
   displayTodo(projects[index].todos);
-  displayHowManyTodos(projects[index].todos.length);
   handleTodoModal();
 });
 
@@ -97,6 +85,7 @@ todosContainer.addEventListener('click', (e) => {
     let index = getSelectedContainer(projectsContainer);
     const targetTodoName = e.target.nextElementSibling.textContent;
     deleteTodo(targetTodoName, projects[index].todos);
+    save();
     displayTodo(projects[index].todos);
   }
 });
@@ -112,4 +101,4 @@ goBack.addEventListener('click', () => {
   }, 500);
 });
 
-export default projects;
+export { projects, LOCAL_STORAGE_PROJECTS_KEY };
