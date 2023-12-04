@@ -15,13 +15,7 @@ const todos = document.querySelector('.todos');
 const goBack = document.querySelector('.go-back');
 
 const app = new App();
-app.createProject('Gym');
-app.createProject('Cleaning');
-app.createProject('Cooking');
-app.projects[0].createTodo('Bench', 'High');
-app.projects[0].createTodo('Back', 'High');
-app.projects[0].createTodo('Legs', 'High');
-app.projects[1].createTodo('Legs', 'High');
+app.saveAndDisplayProjects();
 
 addProjectBtn.addEventListener('click', handleProjectModal);
 
@@ -52,6 +46,7 @@ projectsContainer.addEventListener('click', (e) => {
       todos.classList = 'todos open';
     }, 500);
     app.projects[targetId].displayTodo();
+    app.projects[targetId].displayHowManyTodos();
   }
 });
 
@@ -63,8 +58,8 @@ todoForm.addEventListener('submit', (e) => {
   let index = getIndex(projectsContainer);
   app.projects[index].createTodo(todoName);
   app.projects[index].displayTodo();
+  app.projects[index].displayHowManyTodos();
   handleTodoModal();
-  console.log(app);
 });
 
 todosContainer.addEventListener('click', (e) => {
@@ -73,6 +68,7 @@ todosContainer.addEventListener('click', (e) => {
     const targetTodoName = e.target.nextElementSibling.textContent;
     app.projects[index].deleteTodo(targetTodoName);
     app.projects[index].displayTodo();
+    app.projects[index].displayHowManyTodos();
   }
 });
 

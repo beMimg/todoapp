@@ -1,6 +1,7 @@
 import Todo from './todo';
 
 const todosContainer = document.querySelector('.todos-container');
+const howManyTodos = document.querySelector('.how-many-todos');
 
 class Project {
   constructor(name) {
@@ -32,7 +33,7 @@ class Project {
   }
 
   editTodo(prevName, nextName) {
-    const index = this.todos.findIndex((todo) => todo.name === prevName);
+    const index = this.findTheIndex(prevName);
     this.todos[index].name = nextName;
   }
 
@@ -52,6 +53,10 @@ class Project {
   findTheIndex(name) {
     const index = this.todos.findIndex((todo) => todo.name === name);
     return index;
+  }
+
+  displayHowManyTodos() {
+    howManyTodos.textContent = this.howManyTodosActive;
   }
 }
 
