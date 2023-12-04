@@ -61,5 +61,4 @@ export {
   displayProjects,
   displayHowManyProjects,
   findTheIndex,
-  // saveLOCAL,
 };

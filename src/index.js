@@ -10,7 +10,6 @@ import {
   displayProjects,
   displayHowManyProjects,
   findTheIndex,
-  // saveLOCAL,
 } from './project';
 import {
   createTodo,
@@ -33,18 +32,28 @@ const goBack = document.querySelector('.go-back');
 
 addProjectBtn.addEventListener('click', handleProjectModal);
 
-let projects = [];
+let LOCAL_STORAGE_PROJECTS_KEY = 'projects_list';
+let projects =
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
 let howManyProjects = 0;
+saveAndRender(projects);
+function save() {
+  localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
+}
+
+function saveAndRender(arr) {
+  save();
+  displayProjects(arr);
+}
 
 projectForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const projectName = projectInputValue.value;
   createProject(projectName, projects);
   handleProjectModal();
-  displayProjects(projects);
+  saveAndRender(projects);
   howManyProjects += 1;
   displayHowManyProjects(howManyProjects);
-  console.log(projects[0].todos);
 });
 
 projectsContainer.addEventListener('click', (e) => {
@@ -102,3 +111,5 @@ goBack.addEventListener('click', () => {
     projectsHTML.classList = 'projects open';
   }, 500);
 });
+
+export default projects;
