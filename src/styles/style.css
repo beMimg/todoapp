@@ -20,13 +20,14 @@ h5,
 p {
   margin: 0;
 }
+
 .background {
   z-index: 0;
   width: 100%;
   height: 100%;
   position: absolute;
   background:
-    linear-gradient(rgba(192, 122, 122, 0.6), rgba(0, 0, 0, 0.7)),
+    linear-gradient(rgba(192, 122, 122, 0.8), rgba(0, 0, 0, 0.8)),
     url('/src/assets/wallpaper.png') center/cover no-repeat;
 }
 
@@ -35,24 +36,24 @@ p {
   height: 85%;
   width: 85%;
   border-radius: 20px;
-  background: linear-gradient(rgba(52, 2, 2, 0.6), rgba(0, 0, 0, 0.7));
+  background-color: #101014;
+  overflow: hidden;
 }
 
 .projects {
-  /* for now */
   height: 100%;
   grid-template-rows: 10% auto;
   opacity: 1;
   display: grid;
-  /* display: none; */
-  overflow: auto;
-  padding: 5px;
+  overflow: hidden;
 }
+
 .projects.close {
   opacity: 0;
   display: none;
   animation: displayGridToNone 0.5s ease-in-out;
 }
+
 .projects.open {
   opacity: 1;
   display: grid;
@@ -64,10 +65,12 @@ header {
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   justify-items: center;
+  background-color: #1b1b1c;
 }
 
 .header-title {
   font-size: 1.5rem;
+  margin-left: 10px;
 }
 
 .add-btn {
@@ -123,54 +126,48 @@ header {
 }
 
 .projects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: 20px;
   padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
+  display: grid;
+  overflow: hidden;
+  justify-content: center;
 }
 
 .project-container {
-  background-color: aqua;
+  max-height: 250px;
   border-radius: 20px;
-  background: linear-gradient(rgba(18, 124, 159, 1), rgba(0, 0, 0, 0.8));
+  background-color: #e7dcf4;
+  color: #101014;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   cursor: pointer;
   transition: all 0.5s ease;
 }
+
 .project-container:hover {
   transform: translateY(-2%);
 }
 
 .project-name {
+  font-size: 100%;
   overflow: hidden;
   display: grid;
   align-self: center;
   justify-self: center;
-  font-size: 100%;
   overflow: hidden;
 }
 
 .delete-project-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  padding: 5px;
   font-size: 1.6rem;
+  margin-right: 10px;
+  font-weight: 600;
   cursor: pointer;
   border: none;
   display: grid;
-  align-self: center;
   justify-self: flex-end;
-  align-content: center;
-  margin-right: 10px;
-  font-weight: 600;
   background-color: transparent;
-  color: white;
-  transition: all 0.3s ease;
-}
-.delete-project-btn:hover {
-  transform: scale(1.4);
+  color: #101014;
 }
 
 /* todos */
@@ -178,13 +175,11 @@ header {
 .todos {
   height: 100%;
   grid-template-rows: 10% auto;
-  opacity: 0;
-  display: none;
   opacity: 1;
-  /* display: grid; */
-  overflow: auto;
-  padding: 5px;
+  display: grid;
+  overflow: hidden;
 }
+
 .todos.close {
   opacity: 0;
   display: none;
@@ -235,15 +230,16 @@ header {
 
 .todos-container {
   display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(100px, 150px));
+  grid-template-rows: repeat(auto-fit, minmax(50px, 100px));
   grid-gap: 20px;
   padding: 20px;
+  overflow: auto;
 }
 
 .todo-container {
-  background-color: aqua;
+  background-color: #e0c5dc;
+  color: black;
   border-radius: 20px;
-  background: linear-gradient(rgb(0, 138, 83), rgba(34, 152, 225, 0.6));
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   cursor: pointer;
@@ -254,32 +250,26 @@ header {
 }
 
 .todo-name {
+  font-size: 100%;
   overflow: hidden;
   display: grid;
   align-self: center;
   justify-self: center;
-  font-size: 100%;
-  overflow: hidden;
 }
 
 .delete-todo-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  padding: 5px;
   font-size: 1.6rem;
+  margin-right: 10px;
+  font-weight: 600;
   cursor: pointer;
   border: none;
   display: grid;
-  align-self: center;
   justify-self: flex-end;
-  align-content: center;
-  margin-right: 10px;
-  font-weight: 600;
   background-color: transparent;
-  color: white;
+  color: #101014;
   transition: all 0.3s ease;
 }
+
 .delete-todo-btn:hover {
   transform: scale(1.4);
 }
@@ -293,6 +283,34 @@ header {
 }
 .go-back:hover {
   transform: scale(1.5);
+}
+
+@media only screen and (max-width: 767px) {
+  .header-title {
+    font-size: 1rem;
+    margin-left: 10px;
+  }
+  .projects-container {
+    grid-gap: 10px;
+    padding: 20px;
+    font-size: 0.9rem;
+    grid-template-rows: repeat(auto-fit, minmax(100px, 100px));
+  }
+
+  .todos-container {
+    grid-template-rows: repeat(auto-fit, minmax(50px, 75px));
+    grid-gap: 10px;
+    padding: 20px;
+    overflow: auto;
+    font-size: 0.8rem;
+  }
+
+  .add-btn span {
+    font-size: 2rem;
+  }
+  .top-left-header {
+    gap: 3px;
+  }
 }
 
 @keyframes displayNoneToFlex {
