@@ -1,5 +1,13 @@
+const projectFormModal = document.querySelector('.project-form-modal');
+const closeProjectModal = document.getElementById('close-project-modal');
+const closeTodoModal = document.getElementById('close-todo-modal');
+const todoFromModal = document.querySelector('.todo-form-modal');
+
+closeProjectModal.addEventListener('click', handleProjectModal);
+
+closeTodoModal.addEventListener('click', handleTodoModal);
+
 function handleProjectModal() {
-  const projectFormModal = document.querySelector('.project-form-modal');
   if (!projectFormModal.classList.contains('open')) {
     projectFormModal.classList.remove('close');
     projectFormModal.classList.add('open');
@@ -10,7 +18,6 @@ function handleProjectModal() {
 }
 
 function handleTodoModal() {
-  const todoFromModal = document.querySelector('.todo-form-modal');
   if (!todoFromModal.classList.contains('open')) {
     todoFromModal.classList.remove('close');
     todoFromModal.classList.add('open');

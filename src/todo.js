@@ -11,8 +11,7 @@ class Todo {
 }
 
 const createTodo = (name, arr) => {
-  if (arr.some((todo) => todo.name === name)) {
-    console.error('This todo already exists.');
+  if (arr.some((todo) => todo.name === name) || name.length === 0) {
     return;
   }
   const newTodo = new Todo(name);

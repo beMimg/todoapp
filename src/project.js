@@ -13,7 +13,7 @@ class Project {
 }
 
 const createProject = (name, arr) => {
-  if (arr.some((project) => project.name === name)) {
+  if (arr.some((project) => project.name === name) || name.length === 0) {
     return;
   }
   displayHowManyProjects(arr.length + 1);

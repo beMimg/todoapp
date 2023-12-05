@@ -114,15 +114,39 @@ header {
   display: flex;
   animation: displayNoneToFlex 1s ease;
 }
+
 .project-form-modal.close {
   animation: displayFlexToNone 1s ease;
 }
 
 .project-form {
-  background-color: white;
-  color: black;
-  padding: 20px;
+  background-color: #e6f5fb;
+  font-weight: 500;
+  font-size: 1.2rem;
+  gap: 20px;
+  padding: 30px;
   border-radius: 10px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #1b1b1c;
+  color: white;
+}
+.project-form button {
+  background-color: rgb(27, 136, 173);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 .projects-container {
@@ -219,11 +243,35 @@ header {
 }
 
 .todo-form {
-  background-color: white;
-  color: black;
-  padding: 20px;
+  background-color: #e6f5fb;
+  font-weight: 500;
+  font-size: 1.2rem;
+  gap: 20px;
+  padding: 30px;
   border-radius: 10px;
+  color: black;
+  display: flex;
+  flex-direction: column;
 }
+
+.todo-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #1b1b1c;
+  color: white;
+}
+.todo-form button {
+  background-color: rgb(27, 136, 173);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
 .how-many-todos {
   font-size: 1.3rem;
 }
@@ -290,6 +338,7 @@ header {
     font-size: 1rem;
     margin-left: 10px;
   }
+
   .projects-container {
     grid-gap: 10px;
     padding: 20px;
@@ -308,8 +357,51 @@ header {
   .add-btn span {
     font-size: 2rem;
   }
+
   .top-left-header {
     gap: 3px;
+  }
+
+  .project-form {
+    font-size: 1rem;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .project-form input {
+    padding: 7px;
+    font-size: 1rem;
+  }
+  .project-form button {
+    background-color: rgb(27, 136, 173);
+    padding: 7px;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .todo-form {
+    font-size: 1rem;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .todo-form input {
+    padding: 7px;
+    font-size: 1rem;
+  }
+  .todo-form button {
+    background-color: rgb(27, 136, 173);
+    padding: 7px;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    cursor: pointer;
   }
 }
 
