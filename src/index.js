@@ -80,6 +80,7 @@ todoForm.addEventListener('submit', (e) => {
   createTodo(todoName, projects[index].todos);
   save();
   displayTodo(projects[index].todos);
+
   handleTodoModal();
 });
 
