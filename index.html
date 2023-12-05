@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webpack Title</title>
-  <script defer src="indexfb531ff4f08d2f55f06e.js"></script></head>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <title>Todoapp</title>
+  <script defer src="indexd30f193aac38d4c5a18e.js"></script></head>
   <body>
     <!-- Display None Default -->
     <div class="project-form-modal">
@@ -35,7 +39,7 @@
             id="add-project-btn"
             aria-label="add project button"
           >
-            +
+            <span class="material-icons"> add_circle_outline </span>
           </button>
           <div class="how-many-projects" aria-label="number of active projects">
             3
@@ -51,15 +55,19 @@
       <div class="todos">
         <header>
           <div class="top-left-header">
-            <button class="go-back">GoB</button>
-            <h1 class="header-title">This project todos</h1>
+            <button class="go-back">
+              <span class="material-icons"> undo </span>
+            </button>
+            <h1 class="header-title" id="this-projects-title">
+              This project todos
+            </h1>
           </div>
           <button
             class="add-btn"
             id="add-todo-btn"
             aria-label="add todo button"
           >
-            +
+            <span class="material-icons"> add_comment </span>
           </button>
           <div class="how-many-todos" aria-label="number of active todos">
             3
