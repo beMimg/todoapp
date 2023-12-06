@@ -1,4 +1,4 @@
-import { findTheIndex } from './project';
+import { findTheIndex, save } from './project';
 
 const todosContainer = document.querySelector('.todos-container');
 const howManyTodos = document.getElementById('how-many-todos');
@@ -26,8 +26,10 @@ const deleteTodo = (name, arr) => {
 };
 
 const editTodo = (prevName, nextName, arr) => {
-  const index = findTheIndex(prevName, arr);
+  console.log(prevName, nextName, arr);
+  const index = arr.findIndex((todo) => todo.name === prevName);
   arr[index].name = nextName;
+  return;
 };
 
 const displayTodo = (arr) => {
@@ -36,8 +38,9 @@ const displayTodo = (arr) => {
     const todoContainer = document.createElement('div');
     todoContainer.classList = 'todo-container';
     todoContainer.innerHTML = `
+    <button id="edit-todo-btn" class="edit-btn"></button>
     <button id="delete-todo-btn" class="delete-btn">x</button>
-    <h1 class="project-name">${todo.name}</h1>
+    <h1 class="todo-name">${todo.name}</h1>
   `;
     todosContainer.appendChild(todoContainer);
   });

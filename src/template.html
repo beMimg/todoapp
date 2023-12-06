@@ -36,9 +36,20 @@
         <button type="submit" class="form-btn-submit">Create</button>
       </form>
     </div>
-    <!-- Display None Default END -->
 
-    <div class="background"></div>
+    <div id="edit-todo-modal" class="form-modal">
+      <form id="edit-todo-form" class="form">
+        <button type="button" id="close-edit-modal" class="close-modal-btn">
+          x
+        </button>
+        <div>
+          <label for="edit-todo-input">New name:</label>
+          <input type="text" name="edit-todo-input" id="edit-todo-input" />
+        </div>
+        <button type="submit" class="form-btn-submit">Create</button>
+      </form>
+    </div>
+    <!-- Display None Default END -->
     <main class="app">
       <!-- Projects -->
       <div class="projects">

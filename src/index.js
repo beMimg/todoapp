@@ -2,7 +2,8 @@ import './styles/style.css';
 import {
   handleProjectModal,
   handleTodoModal,
-  getSelectedContainer,
+  getSelectedProject,
+  handleEditModal,
 } from './utils';
 import {
   createProject,
@@ -17,13 +18,12 @@ import {
   deleteTodo,
   displayHowManyTodos,
   displayTodo,
+  editTodo,
 } from './todo';
 
-const addProjectBtn = document.getElementById('add-project-btn');
 const projectForm = document.getElementById('project-form');
-const projectInputValue = document.getElementById('project-name');
+const projectInput = document.getElementById('project-name');
 const projectsContainer = document.querySelector('.projects-container');
-const addTodoBtn = document.getElementById('add-todo-btn');
 const todoForm = document.getElementById('todo-form');
 const todoInputValue = document.getElementById('todo-name');
 const todosContainer = document.querySelector('.todos-container');
@@ -31,8 +31,8 @@ const projectsHTML = document.querySelector('.projects');
 const todos = document.querySelector('.todos');
 const goBack = document.querySelector('.go-back');
 const headerTitle = document.getElementById('this-projects-title');
-
-addProjectBtn.addEventListener('click', handleProjectModal);
+const editTodoForm = document.getElementById('edit-todo-form');
+const editTodoInput = document.getElementById('edit-todo-input');
 
 let LOCAL_STORAGE_PROJECTS_KEY = 'projects_list';
 let projects =
@@ -42,7 +42,7 @@ displayHowManyProjects(projects.length);
 
 projectForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const projectName = projectInputValue.value;
+  const projectName = projectInput.value;
   createProject(projectName, projects);
   handleProjectModal();
   saveAndRender(projects);
@@ -71,28 +71,44 @@ projectsContainer.addEventListener('click', (e) => {
   }
 });
 
-addTodoBtn.addEventListener('click', handleTodoModal);
-
 todoForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const todoName = todoInputValue.value;
-  let index = getSelectedContainer(projectsContainer);
+  let index = getSelectedProject(projectsContainer);
   createTodo(todoName, projects[index].todos);
   save();
   displayTodo(projects[index].todos);
-
   handleTodoModal();
 });
 
 todosContainer.addEventListener('click', (e) => {
   if (e.target.id === 'delete-todo-btn') {
-    let index = getSelectedContainer(projectsContainer);
+    let index = getSelectedProject(projectsContainer);
     const targetTodoName = e.target.nextElementSibling.textContent;
     deleteTodo(targetTodoName, projects[index].todos);
     save();
     displayTodo(projects[index].todos);
   }
 });
+
+todosContainer.addEventListener('click', (e) => {
+  const index = getSelectedProject(projectsContainer);
+  const targetTodoName =
+    e.target.nextElementSibling.nextElementSibling.textContent;
+  handleEditModal();
+  handleEdit(index, targetTodoName);
+});
+
+function handleEdit(index, targetTodoName) {
+  editTodoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    editTodo(targetTodoName, editTodoInput.value, projects[index].todos);
+    save();
+    displayTodo(projects[index].todos);
+    handleEditModal();
+    console.log(projects[index].todos);
+  });
+}
 
 // // unselects all
 goBack.addEventListener('click', () => {

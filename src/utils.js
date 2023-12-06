@@ -4,6 +4,7 @@ const closeProjectModal = document.getElementById('close-project-modal');
 const closeTodoModal = document.getElementById('close-todo-modal');
 const addProjectBtn = document.getElementById('add-project-btn');
 const addTodoBtn = document.getElementById('add-todo-btn');
+const editTodoModal = document.getElementById('edit-todo-modal');
 
 closeProjectModal.addEventListener('click', handleProjectModal);
 
@@ -33,7 +34,17 @@ function handleTodoModal() {
   }
 }
 
-function getSelectedContainer(container) {
+function handleEditModal() {
+  if (!editTodoModal.classList.contains('open')) {
+    editTodoModal.classList.remove('close');
+    editTodoModal.classList.add('open');
+  } else if (editTodoModal.classList.contains('open')) {
+    editTodoModal.classList.remove('open');
+    editTodoModal.classList.add('close');
+  }
+}
+
+function getSelectedProject(container) {
   const containerChildren = container.children;
   let index = 0;
   for (let i = 0; i < containerChildren.length; i++) {
@@ -44,4 +55,9 @@ function getSelectedContainer(container) {
   return index;
 }
 
-export { handleProjectModal, handleTodoModal, getSelectedContainer };
+export {
+  handleProjectModal,
+  handleTodoModal,
+  handleEditModal,
+  getSelectedProject,
+};
