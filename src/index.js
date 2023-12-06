@@ -20,11 +20,11 @@ import {
 } from './todo';
 
 const addProjectBtn = document.getElementById('add-project-btn');
-const projectForm = document.querySelector('.project-form');
+const projectForm = document.getElementById('project-form');
 const projectInputValue = document.getElementById('project-name');
 const projectsContainer = document.querySelector('.projects-container');
 const addTodoBtn = document.getElementById('add-todo-btn');
-const todoForm = document.querySelector('.todo-form');
+const todoForm = document.getElementById('todo-form');
 const todoInputValue = document.getElementById('todo-name');
 const todosContainer = document.querySelector('.todos-container');
 const projectsHTML = document.querySelector('.projects');
@@ -49,7 +49,7 @@ projectForm.addEventListener('submit', (e) => {
 });
 
 projectsContainer.addEventListener('click', (e) => {
-  if (e.target.className === 'delete-project-btn') {
+  if (e.target.id === 'delete-project-btn') {
     const targetProjectName = e.target.nextElementSibling.textContent;
     deleteProject(targetProjectName, projects);
     saveAndRender(projects);
@@ -85,7 +85,7 @@ todoForm.addEventListener('submit', (e) => {
 });
 
 todosContainer.addEventListener('click', (e) => {
-  if (e.target.className === 'delete-todo-btn') {
+  if (e.target.id === 'delete-todo-btn') {
     let index = getSelectedContainer(projectsContainer);
     const targetTodoName = e.target.nextElementSibling.textContent;
     deleteTodo(targetTodoName, projects[index].todos);

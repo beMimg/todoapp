@@ -1,11 +1,17 @@
-const projectFormModal = document.querySelector('.project-form-modal');
+const projectFormModal = document.getElementById('project-form-modal');
+const todoFromModal = document.getElementById('todo-form-modal');
 const closeProjectModal = document.getElementById('close-project-modal');
 const closeTodoModal = document.getElementById('close-todo-modal');
-const todoFromModal = document.querySelector('.todo-form-modal');
+const addProjectBtn = document.getElementById('add-project-btn');
+const addTodoBtn = document.getElementById('add-todo-btn');
 
 closeProjectModal.addEventListener('click', handleProjectModal);
 
 closeTodoModal.addEventListener('click', handleTodoModal);
+
+addProjectBtn.addEventListener('click', handleProjectModal);
+
+addTodoBtn.addEventListener('click', handleTodoModal);
 
 function handleProjectModal() {
   if (!projectFormModal.classList.contains('open')) {

@@ -1,7 +1,7 @@
 import { findTheIndex } from './project';
 
 const todosContainer = document.querySelector('.todos-container');
-const howManyTodos = document.querySelector('.how-many-todos');
+const howManyTodos = document.getElementById('how-many-todos');
 
 class Todo {
   constructor(name, priority) {
@@ -36,7 +36,7 @@ const displayTodo = (arr) => {
     const todoContainer = document.createElement('div');
     todoContainer.classList = 'todo-container';
     todoContainer.innerHTML = `
-    <button class="delete-todo-btn">x</button>
+    <button id="delete-todo-btn" class="delete-btn">x</button>
     <h1 class="project-name">${todo.name}</h1>
   `;
     todosContainer.appendChild(todoContainer);

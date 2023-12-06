@@ -1,7 +1,7 @@
 import { projects, LOCAL_STORAGE_PROJECTS_KEY } from '.';
 
 const projectsContainer = document.querySelector('.projects-container');
-const howManyProjects = document.querySelector('.how-many-projects');
+const howManyProjects = document.getElementById('how-many-projects');
 
 class Project {
   constructor(name) {
@@ -33,7 +33,7 @@ const displayProjects = (arr) => {
     const projectContainer = document.createElement('div');
     projectContainer.classList = `project-container`;
     projectContainer.innerHTML = `
-    <button class="delete-project-btn">x</button>
+    <button id="delete-project-btn" class="delete-btn">x</button>
     <h1 class="project-name">${project.name}</h1>
   `;
     projectsContainer.appendChild(projectContainer);

@@ -26,9 +26,17 @@ p {
   width: 100%;
   height: 100%;
   position: absolute;
-  background:
-    linear-gradient(rgba(192, 122, 122, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/src/assets/wallpaper.png') center/cover no-repeat;
+  background: #b993d6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #8ca6db,
+    #b993d6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #8ca6db,
+    #b993d6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .app {
@@ -38,6 +46,7 @@ p {
   border-radius: 20px;
   background-color: #101014;
   overflow: hidden;
+  box-shadow: 6px 6px 10px;
 }
 
 .projects {
@@ -92,11 +101,11 @@ header {
   color: white;
 }
 
-.how-many-projects {
+.how-many {
   font-size: 1.3rem;
 }
 
-.project-form-modal {
+.form-modal {
   position: absolute;
   top: 0;
   left: 0;
@@ -110,19 +119,19 @@ header {
   z-index: 20000;
 }
 
-.project-form-modal.open {
+.form-modal.open {
   display: flex;
   animation: displayNoneToFlex 1s ease;
 }
 
-.project-form-modal.close {
+.form-modal.close {
   animation: displayFlexToNone 1s ease;
 }
 
-.project-form {
-  background-color: #e6f5fb;
+.form {
+  position: relative;
+  background-color: #ffffff;
   font-weight: 500;
-  font-size: 1.2rem;
   gap: 20px;
   padding: 30px;
   border-radius: 10px;
@@ -131,19 +140,36 @@ header {
   flex-direction: column;
 }
 
-.project-form input {
+.form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
   padding: 10px;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
-  background-color: #1b1b1c;
-  color: white;
+  background-color: #dbdbdb;
+  min-width: 300px;
 }
-.project-form button {
-  background-color: rgb(27, 136, 173);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 1.1rem;
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.form-btn-submit {
+  background-color: rgb(36, 109, 246);
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 1.3rem;
   border: none;
   color: white;
   cursor: pointer;
@@ -154,7 +180,7 @@ header {
   padding: 20px;
   grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
   display: grid;
-  overflow: hidden;
+  overflow: auto;
   justify-content: center;
 }
 
@@ -182,7 +208,7 @@ header {
   overflow: hidden;
 }
 
-.delete-project-btn {
+.delete-btn {
   font-size: 1.6rem;
   margin-right: 10px;
   font-weight: 600;
@@ -209,71 +235,17 @@ header {
   display: none;
   animation: displayGridToNone 0.5s ease-in-out;
 }
+
 .todos.open {
   opacity: 1;
   display: grid;
   animation: displayNoneToGrid 0.5s ease-in-out;
 }
+
 .top-left-header {
   display: flex;
   flex-direction: row;
   gap: 10px;
-}
-
-.todo-form-modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: none;
-  opacity: 1;
-  align-items: center;
-  justify-content: center;
-  z-index: 20000;
-}
-
-.todo-form-modal.open {
-  display: flex;
-  animation: displayNoneToFlex 1s ease;
-}
-.todo-form-modal.close {
-  animation: displayFlexToNone 1s ease;
-}
-
-.todo-form {
-  background-color: #e6f5fb;
-  font-weight: 500;
-  font-size: 1.2rem;
-  gap: 20px;
-  padding: 30px;
-  border-radius: 10px;
-  color: black;
-  display: flex;
-  flex-direction: column;
-}
-
-.todo-form input {
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: none;
-  background-color: #1b1b1c;
-  color: white;
-}
-.todo-form button {
-  background-color: rgb(27, 136, 173);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-.how-many-todos {
-  font-size: 1.3rem;
 }
 
 .todos-container {
@@ -293,6 +265,7 @@ header {
   cursor: pointer;
   transition: all 0.5s ease;
 }
+
 .todo-container:hover {
   transform: translateY(-2%);
 }
@@ -329,6 +302,7 @@ header {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
 .go-back:hover {
   transform: scale(1.5);
 }
@@ -362,46 +336,14 @@ header {
     gap: 3px;
   }
 
-  .project-form {
-    font-size: 1rem;
+  .form {
+    font-weight: 500;
     gap: 20px;
     padding: 20px;
-    border-radius: 10px;
   }
 
-  .project-form input {
-    padding: 7px;
-    font-size: 1rem;
-  }
-  .project-form button {
-    background-color: rgb(27, 136, 173);
-    padding: 7px;
-    border-radius: 10px;
-    font-size: 1rem;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-
-  .todo-form {
-    font-size: 1rem;
-    gap: 20px;
-    padding: 20px;
-    border-radius: 10px;
-  }
-
-  .todo-form input {
-    padding: 7px;
-    font-size: 1rem;
-  }
-  .todo-form button {
-    background-color: rgb(27, 136, 173);
-    padding: 7px;
-    border-radius: 10px;
-    font-size: 1rem;
-    border: none;
-    color: white;
-    cursor: pointer;
+  .form input {
+    min-width: 250px;
   }
 }
 
