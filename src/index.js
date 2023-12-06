@@ -110,6 +110,12 @@ function handleEdit(index, targetTodoName) {
   });
 }
 
+todosContainer.addEventListener('click', (e) => {
+  if (e.target.id === 'edit-todo-btn') {
+    handleEditModal();
+  }
+});
+
 // // unselects all
 goBack.addEventListener('click', () => {
   for (let i = 0; i < projects.length; i++) {
