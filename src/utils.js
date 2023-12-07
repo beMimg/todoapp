@@ -4,8 +4,8 @@ const closeProjectModal = document.getElementById('close-project-modal');
 const closeTodoModal = document.getElementById('close-todo-modal');
 const addProjectBtn = document.getElementById('add-project-btn');
 const addTodoBtn = document.getElementById('add-todo-btn');
-const editTodoModal = document.getElementById('edit-todo-modal');
 const closeEditModalBtn = document.getElementById('close-edit-modal');
+const editTodoModal = document.getElementById('edit-todo-modal');
 
 closeEditModalBtn.addEventListener('click', handleEditModal);
 
@@ -37,16 +37,6 @@ function handleTodoModal() {
   }
 }
 
-function handleEditModal() {
-  if (!editTodoModal.classList.contains('open')) {
-    editTodoModal.classList.remove('close');
-    editTodoModal.classList.add('open');
-  } else if (editTodoModal.classList.contains('open')) {
-    editTodoModal.classList.remove('open');
-    editTodoModal.classList.add('close');
-  }
-}
-
 function getSelectedProject(container) {
   const containerChildren = container.children;
   let index = 0;
@@ -56,6 +46,18 @@ function getSelectedProject(container) {
     }
   }
   return index;
+}
+
+function handleEditModal() {
+  if (editTodoModal.className === 'form-modal') {
+    editTodoModal.classList.add('open');
+  } else if (editTodoModal.classList.contains('open')) {
+    editTodoModal.classList.remove('open');
+    editTodoModal.classList.add('close');
+  } else if (editTodoModal.classList.contains('close')) {
+    editTodoModal.classList.remove('close');
+    editTodoModal.classList.add('open');
+  }
 }
 
 export {

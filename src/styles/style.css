@@ -32,7 +32,6 @@ p {
   background-color: #101014;
   overflow: hidden;
   box-shadow: 6px 6px 10px;
-  animation: fade-in 1s ease;
 }
 
 .projects {
@@ -316,6 +315,10 @@ header {
 @media only screen and (max-width: 767px) {
   body {
     overflow: scroll;
+  }
+
+  .projects .header-title {
+    width: 90px;
   }
 
   .header-title {

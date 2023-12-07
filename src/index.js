@@ -108,15 +108,8 @@ function handleEdit(index, targetTodoName) {
     save();
     displayTodo(projects[index].todos);
     handleEditModal();
-    console.log(projects[index].todos);
   });
 }
-
-// todosContainer.addEventListener('click', (e) => {
-//   if (e.target.id === 'edit-todo-btn') {
-//     handleEditModal();
-//   }
-// });
 
 // // unselects all
 goBack.addEventListener('click', () => {
