@@ -92,11 +92,13 @@ todosContainer.addEventListener('click', (e) => {
 });
 
 todosContainer.addEventListener('click', (e) => {
-  const index = getSelectedProject(projectsContainer);
-  const targetTodoName =
-    e.target.nextElementSibling.nextElementSibling.textContent;
-  handleEditModal();
-  handleEdit(index, targetTodoName);
+  if (e.target.id === 'edit-todo-btn') {
+    const index = getSelectedProject(projectsContainer);
+    const targetTodoName =
+      e.target.nextElementSibling.nextElementSibling.textContent;
+    handleEditModal();
+    handleEdit(index, targetTodoName);
+  }
 });
 
 function handleEdit(index, targetTodoName) {
@@ -110,11 +112,11 @@ function handleEdit(index, targetTodoName) {
   });
 }
 
-todosContainer.addEventListener('click', (e) => {
-  if (e.target.id === 'edit-todo-btn') {
-    handleEditModal();
-  }
-});
+// todosContainer.addEventListener('click', (e) => {
+//   if (e.target.id === 'edit-todo-btn') {
+//     handleEditModal();
+//   }
+// });
 
 // // unselects all
 goBack.addEventListener('click', () => {

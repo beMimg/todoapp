@@ -5,6 +5,9 @@ const closeTodoModal = document.getElementById('close-todo-modal');
 const addProjectBtn = document.getElementById('add-project-btn');
 const addTodoBtn = document.getElementById('add-todo-btn');
 const editTodoModal = document.getElementById('edit-todo-modal');
+const closeEditModalBtn = document.getElementById('close-edit-modal');
+
+closeEditModalBtn.addEventListener('click', handleEditModal);
 
 closeProjectModal.addEventListener('click', handleProjectModal);
 
